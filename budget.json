@@ -1,0 +1,29 @@
+{
+  "properties": {
+    "category": "Cost",
+    "amount": 100.65,
+    "timeGrain": "Monthly",
+    "timePeriod": {
+      "startDate": "2022-11-01T00:00:00Z",
+      "endDate": "2032-12-31T00:00:00Z"
+    },
+
+    "notifications": {
+      "Actual_GreaterThan_80_Percent": {
+        "enabled": true,
+        "operator": "GreaterThan",
+        "threshold": 80,
+        "locale": "en-us",
+        "contactEmails": [
+          "johndoe@contoso.com",
+          "janesmith@contoso.com"
+        ],
+        "contactRoles": [
+          "Contributor",
+          "Reader"
+        ],
+        "thresholdType": "Actual"
+      }
+    }
+  }
+}
