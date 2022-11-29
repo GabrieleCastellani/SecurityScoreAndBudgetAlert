@@ -53,22 +53,29 @@ foreach($MyAzTenant in $MyAzTenants){
         else {
             Write-Output "Register Security on subcription: $MyAzSubscription"
             Register-AzResourceProvider  -ProviderNamespace 'Microsoft.Security'  
+            $MyCSVRow= @( [pscustomobject]@{
+                Date=(Get-Date).Date;
+                TenantName=$MyAzTenant.Name;
+                SubscriptionID=$MyAzSubscription.Id;
+                SubscriptionName=$MyAzSubscription.Name;
+                SecureScore= 0;
+                Weight = 0
+                Actions = "Provider registered"
+            } )# Append the Secure Score to the CSV file$
+            $MyCSVRow | Export-Csv $MyCSVPath -Append
         }
-        #Login Rest Api
-        $accessToken = (Get-AzAccessToken -ResourceUrl "https://management.azure.com").Token
-        $apiUrl="https://management.azure.com/subscriptions/"+$MyAzSubscription.Id+"/providers/Microsoft.Consumption/budgets?api-version=2021-10-01" 
-        $checkBdg= ((Invoke-RestMethod -Headers @{Authorization = "Bearer $accessToken"} -Uri $apiUrl -ContentType 'application/json' -Method GET -Verbose).value| Where-Object -Property name -EQ $budgetName).Count
-        if ($checkBdg -eq 0){
-            #Create Budget
-            $body= Get-Content -Raw -Path $MyPath"\budget.json"
+        # #Login Rest Api
+        # $accessToken = (Get-AzAccessToken -ResourceUrl "https://management.azure.com").Token
+        # $apiUrl="https://management.azure.com/subscriptions/"+$MyAzSubscription.Id+"/providers/Microsoft.Consumption/budgets?api-version=2021-10-01" 
+        # $checkBdg= ((Invoke-RestMethod -Headers @{Authorization = "Bearer $accessToken"} -Uri $apiUrl -ContentType 'application/json' -Method GET -Verbose).value| Where-Object -Property name -EQ $budgetName).Count
+        # if ($checkBdg -eq 0){
+        #     #Create Budget
+        #     $body= Get-Content -Raw -Path $MyPath"\budget.json"
            
-            $apiUrl="https://management.azure.com/subscriptions/"+$MyAzSubscription.Id+"/providers/Microsoft.Consumption/budgets/"+ $budgetName  +"?api-version=2021-10-01"
-            Invoke-RestMethod -Headers @{Authorization = "Bearer $accessToken"} -Uri $apiUrl -ContentType 'application/json' -Method PUT -Verbose -Body $body
+        #     $apiUrl="https://management.azure.com/subscriptions/"+$MyAzSubscription.Id+"/providers/Microsoft.Consumption/budgets/"+ $budgetName  +"?api-version=2021-10-01"
+        #     Invoke-RestMethod -Headers @{Authorization = "Bearer $accessToken"} -Uri $apiUrl -ContentType 'application/json' -Method PUT -Verbose -Body $body
 
-        }
+        # }
 
     }
 }# You can extend the script with a foreach, cycling through all Secure Score controls for additional detail: Get-AzSecuritySecureScoreControl.
-
-
-

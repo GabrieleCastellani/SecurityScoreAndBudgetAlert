@@ -1,10 +1,10 @@
 {
   "properties": {
     "category": "Cost",
-    "amount": 100.65,
-    "timeGrain": "Monthly",
+    "amount": **AMOUNT**,
+    "timeGrain": "BillingMonth",
     "timePeriod": {
-      "startDate": "2022-11-01T00:00:00Z",
+      "startDate": "**STARTDATE**",
       "endDate": "2032-12-31T00:00:00Z"
     },
 
