@@ -26,7 +26,6 @@ $MyAzPath=$MyPath+"\tenants.csv"
 # Only subscriptions with appropriate permissions will list a score.
 Connect-AzAccount
 
-#$MyAzTenants=Get-AzTenant
 $MyAzTenantsAndBudgets=Get-Content -Path $MyAzPath
 
 foreach($MyAzTenantBudget in $MyAzTenantsAndBudgets){
