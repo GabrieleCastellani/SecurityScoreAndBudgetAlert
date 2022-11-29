@@ -52,7 +52,4 @@ foreach($MyAzTenantBudget in $MyAzTenantsAndBudgets){
         }
 
     }
-}# You can extend the script with a foreach, cycling through all Secure Score controls for additional detail: Get-AzSecuritySecureScoreControl.
-
-
-
+}
