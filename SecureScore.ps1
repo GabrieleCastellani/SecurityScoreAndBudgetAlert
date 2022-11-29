@@ -38,6 +38,7 @@ foreach($MyAzTenant in $MyAzTenants){
         
         if($check -gt 0){
             $MyAzSecureScore = Get-AzSecuritySecureScore # Create an array containing the Secure Score data$
+            $MyAzReccomanedActions = (Get-AzSecurityTask).RecommendationType -join " | " # Create an array containing the Secure Score reccomended actions
             $MyCSVRow= @( [pscustomobject]@{
                 Date=(Get-Date).Date;
                 TenantName=$MyAzTenant.Name;
@@ -45,6 +46,7 @@ foreach($MyAzTenant in $MyAzTenants){
                 SubscriptionName=$MyAzSubscription.Name;
                 SecureScore= $MyAzSecureScore.Percentage;
                 Weight = $MyAzSecureScore.Weight
+                Actions = $MyAzReccomanedActions
             } )# Append the Secure Score to the CSV file$
             $MyCSVRow | Export-Csv $MyCSVPath -Append
         }
