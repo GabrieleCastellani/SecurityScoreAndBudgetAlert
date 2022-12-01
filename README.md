@@ -1,4 +1,4 @@
-# SecurityScoreAndBudgetAlert
+# Security Score and Budget Alert
 
 This set of scripts help partners to mantain the healthines of their subscription.
 
