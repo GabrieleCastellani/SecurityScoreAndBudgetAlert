@@ -40,7 +40,7 @@ foreach($MyAzTenant in $MyAzTenants){
             $MyAzReccomanedActions = (Get-AzSecurityTask).RecommendationType -join " | " # Create an array containing the Secure Score reccomended actions
             $MyCSVRow= @( [pscustomobject]@{
                 Date=(Get-Date).Date;
-                TenantName=$MyAzTenant.Name;
+                TenantName=$(Get-AzTenant -TenantId $MyAzTenant).Name;
                 SubscriptionID=$MyAzSubscription.Id;
                 SubscriptionName=$MyAzSubscription.Name;
                 SecureScore= $MyAzSecureScore.Percentage;
