@@ -10,7 +10,7 @@ File **tenants.txt** contains the list of tennant and the script will loop all t
 ______
 1. Will check if the subscription is onboarded for the security score **if not it will onboard**
 2. if yes will collect the security score
-3. Otutpu in MySecureScores.csv collected secore scores and Azure Defender Tasks
+3. Otutput in MySecureScores.csv collected scores scores and Azure Defender Tasks
 ______
 ## ReadSecureScore.ps1
 
@@ -24,14 +24,14 @@ ____
 1. Will check if a budget with the name **ContosoManual** exist. 
    - If yes will interprete that this subscription is handled manually go to the next one
 2. Will check if a budget with the name **ContosoAuto** exist
-   - If force parameter is specified will delete it otherwise will skip to the next subscription
+   - If force parameter is specified will delete (and recreate in the steps below) it otherwise will skip to the next subscription leavinf the existing alert unchanged
 3. Collect the consumption in the last month increase it by a percentage specified in IncrementInPercentage
 4. Check if the consumption estimate is above MinimumBudget. Otherwise set consumption to the minimum
 5. Create budget Alert with the parameters specified in the **budget.json**
 6. Output budget.csv with the rules applied
 _____
 
-File **tenants.txt** contains the list of tennant and the script will loop all the subscriptions of those tenant
+File **tenants.txt** contains the list of tenant and the script will loop all the subscriptions of those tenant
 
 File **budget.json** contains the rules to apply to the budget section
 
