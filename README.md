@@ -22,7 +22,7 @@ The script will run to all the subscription for a given list of tenants.
 
 ____
 1. Will check if a budget with the name **ContosoManual** exist. 
-   - If yes will interprete that this subscription is handled manually go to the next one
+   - If yes will interprete that this subscription is handled manually goes to the next one
 2. Will check if a budget with the name **ContosoAuto** exist
    - If **"force"** parameter is specified will delete the alert (and recreate in the steps below) otherwise will skip to the next subscription leaving the existing alert unchanged
 3. Collect the consumption in the last month increase it by a percentage specified in IncrementInPercentage
