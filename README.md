@@ -24,7 +24,7 @@ ____
 1. Will check if a budget with the name **ContosoManual** exist. 
    - If yes will interprete that this subscription is handled manually go to the next one
 2. Will check if a budget with the name **ContosoAuto** exist
-   - If force parameter is specified will delete (and recreate in the steps below) it otherwise will skip to the next subscription leavinf the existing alert unchanged
+   - If **"force"** parameter is specified will delete (and recreate in the steps below) it otherwise will skip to the next subscription leavinf the existing alert unchanged
 3. Collect the consumption in the last month increase it by a percentage specified in IncrementInPercentage
 4. Check if the consumption estimate is above MinimumBudget. Otherwise set consumption to the minimum
 5. Create budget Alert with the parameters specified in the **budget.json**
