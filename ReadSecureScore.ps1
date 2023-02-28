@@ -29,6 +29,7 @@ $MyAzTenants=Get-Content -Path $MyAzPath
 foreach($MyAzTenant in $MyAzTenants){
     Write-Output "Checking tenant: $MyAzTenant" # Get all subscriptions within the selected tenant
     $MyAzSubscriptions = Get-AzSubscription -TenantId $MyAzTenant | Where-Object -Property State -NE 'Disabled'
+    $TenantName=$(Get-AzTenant -TenantId $MyAzTenant).Name
 
     foreach($MyAzSubscription in $MyAzSubscriptions){
         Write-Output "Checking subcription: $MyAzSubscription"
@@ -40,7 +41,7 @@ foreach($MyAzTenant in $MyAzTenants){
             $MyAzReccomanedActions = (Get-AzSecurityTask).RecommendationType -join " | " # Create an array containing the Secure Score reccomended actions
             $MyCSVRow= @( [pscustomobject]@{
                 Date=(Get-Date).Date;
-                TenantName=$MyAzTenant.Name;
+                TenantName=$TenantName;
                 SubscriptionID=$MyAzSubscription.Id;
                 SubscriptionName=$MyAzSubscription.Name;
                 SecureScore= $MyAzSecureScore.Percentage;
