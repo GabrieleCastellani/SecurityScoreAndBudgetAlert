@@ -2,6 +2,13 @@
 
 This set of scripts help partners to mantain the healthines of their subscription.
 
+## Some partner asked has asked how to check if MFA is enabled from Azure Active Directory
+
+```Powershell
+Connect-MsolService  
+Get-MsolUser -All | select DisplayName,BlockCredential,UserPrincipalName,@{N="MFA Status"; E={ if( $_.StrongAuthenticationRequirements.State -ne $null){ $_.StrongAuthenticationRequirements.State} else { "Disabled"}}}
+```
+
 ## SecureScore.ps1
 
 The script will run to all the subscription  for a given list of tenants.
