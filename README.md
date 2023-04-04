@@ -2,7 +2,7 @@
 
 This set of scripts help partners to mantain the healthines of their subscription.
 
-## Some partner asked has asked how to check if MFA is enabled from Azure Active Directory
+Some partner asked has asked how to check if MFA is enabled from Azure Active Directory
 
 ```Powershell
 Connect-MsolService  
